@@ -1,8 +1,14 @@
 import { FC, useState, useCallback, useEffect } from "react";
+import DashboardPage from "@pages/Dashboard";
+import AppTheme from "@components/AppTheme";
 import "./App.css";
 
 const App: FC = () => {
-  return <div className="App">GITHUB USER FINDER :)</div>;
+  return (
+    <AppTheme>
+      <DashboardPage />
+    </AppTheme>
+  );
 };
 
 export default App;
