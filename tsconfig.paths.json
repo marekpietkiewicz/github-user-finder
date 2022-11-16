@@ -9,7 +9,9 @@
         "@services/*": ["src/services/*"],
         "@assets/*": ["src/assets/*"],
         "@helpers/*": ["src/helpers/*"],
-        "@configs/*": ["src/configs/*"]
+        "@configs/*": ["src/configs/*"],
+        "@reducers/*": ["src/reducers/*"],
+        "@actions/*": ["src/actions/*"]
       }
     }
 }
