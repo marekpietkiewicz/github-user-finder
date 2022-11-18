@@ -1,36 +1,27 @@
 import { FC } from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import SearchUser from "./SearchUser";
 import List from "@mui/material/List";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  appState,
   changeSelectedUser,
   addUserToFavorites,
   removeUserFromFavorites,
 } from "@reducers/favoriteReducer";
 import type { favoritesUsersType } from "@reducers/favoriteReducer";
-import useFavoriteList from "@services/useFavoriteList";
+import useFavoriteList from "@hooks/useFavoriteList";
 
 interface props {
   users: favoritesUsersType[];
 }
 
 const UsersList: FC<props> = ({ users }) => {
-  // const theme = useTheme();
-
-  // console.log("UsersList", users.length);
   const dispatch = useDispatch();
 
   const { userIsInFavoriteList } = useFavoriteList();
 
-  const handleClickOnUser = (userId: string) => {
-    dispatch(changeSelectedUser(userId));
+  const handleClickOnUser = (user: favoritesUsersType) => {
+    dispatch(changeSelectedUser(user));
   };
 
   const handleClickOnFavorite = (
@@ -46,12 +37,8 @@ const UsersList: FC<props> = ({ users }) => {
 
   return (
     <Card sx={{ minWidth: 552, boxShadow: 3 }}>
-      {/* <CardContent> */}
       <List
         sx={{
-          // width: 1,
-          // position: "relative",
-          // bgcolor: "background.paper",
           padding: "10px",
         }}
       >
@@ -66,7 +53,6 @@ const UsersList: FC<props> = ({ users }) => {
           />
         ))}
       </List>
-      {/* </CardContent> */}
     </Card>
   );
 };

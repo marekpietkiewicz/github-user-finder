@@ -3,17 +3,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  appState,
-  changeSelectedUser,
-  addUserToFavorites,
-} from "@reducers/favoriteReducer";
+import { useSelector } from "react-redux";
+import { appState } from "@reducers/favoriteReducer";
 import type { favoritesUsersType } from "@reducers/favoriteReducer";
 import NavBar from "@components/Navbar";
 import type { StoreState } from "src/store";
 import UsersList from "@components/UsersList";
-import useFavoriteList from "@services/useFavoriteList";
+import useFavoriteList from "@hooks/useFavoriteList";
 
 const searchUsers: favoritesUsersType[] = [
   {

@@ -10,20 +10,24 @@ import Search from "@components/Navbar/Search";
 import Favorites from "@components/Navbar/Favorites";
 import { StoreState } from "src/store";
 import { appState, changeAppState } from "@reducers/favoriteReducer";
+import useSelectedUser from "@hooks/useSelectedUser";
 
 const NavBar: FC = () => {
   const theme = useTheme();
+  const { getSelectedUser } = useSelectedUser();
   const dispatch = useDispatch();
   const currentAppState = useSelector(
     (state: StoreState) => state.favorite.appState
   );
 
-  const handleOnCLick = () => {
-    if (currentAppState === appState.search) {
-      //will be disabled
+  const handleOnCLickHeadline = () => {
+    dispatch(changeAppState(appState.search));
+  };
+
+  const handleOnCLickStar = () => {
+    if (currentAppState !== appState.favorites) {
       dispatch(changeAppState(appState.favorites));
     } else {
-      //will be enabled
       dispatch(changeAppState(appState.search));
     }
   };
@@ -50,11 +54,18 @@ const NavBar: FC = () => {
               {currentAppState === appState.search ? (
                 <Search />
               ) : (
-                <Favorites handleOnCLick={handleOnCLick} />
+                <Favorites
+                  handleOnCLick={handleOnCLickHeadline}
+                  text={
+                    currentAppState === appState.favorites
+                      ? "Favorites"
+                      : getSelectedUser?.name || ""
+                  }
+                />
               )}
               <Box sx={{ mr: "10px" }}>
                 <FavoriteStar
-                  handleOnCLick={handleOnCLick}
+                  handleOnCLick={handleOnCLickStar}
                   isGold={currentAppState === appState.favorites}
                 />
               </Box>

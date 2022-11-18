@@ -17,13 +17,13 @@ export interface favoritesUsersType {
 interface storeInterface {
   appState: appStateTypes;
   favoritesUsers: favoritesUsersType[] | [];
-  selectedUserId: string | null;
+  selectedUser: favoritesUsersType | null;
 }
 
 export const initialState: storeInterface = {
   appState: appState.search,
   favoritesUsers: [],
-  selectedUserId: null,
+  selectedUser: null,
 };
 
 export const doWeHaveThatUserInStack = (
@@ -40,8 +40,8 @@ export const favoriteReducer = createSlice({
     changeAppState: (state, action: PayloadAction<appStateTypes>) => {
       state.appState = action.payload;
     },
-    changeSelectedUser: (state, action: PayloadAction<string>) => {
-      state.selectedUserId = action.payload;
+    changeSelectedUser: (state, action: PayloadAction<favoritesUsersType>) => {
+      state.selectedUser = action.payload;
     },
     addUserToFavorites: (state, action: PayloadAction<favoritesUsersType>) => {
       if (!doWeHaveThatUserInStack(state.favoritesUsers, action.payload.id)) {

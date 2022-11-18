@@ -6,9 +6,10 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 interface props {
   handleOnCLick: () => void;
+  text: string;
 }
 
-const FavoritesHeadline: FC<props> = ({ handleOnCLick }) => (
+const FavoritesHeadline: FC<props> = ({ handleOnCLick, text }) => (
   <>
     <IconButton onClick={handleOnCLick}>
       <Icon>
@@ -25,7 +26,7 @@ const FavoritesHeadline: FC<props> = ({ handleOnCLick }) => (
         mt: "4px",
       }}
     >
-      Favorites
+      {text}
     </Typography>
   </>
 );

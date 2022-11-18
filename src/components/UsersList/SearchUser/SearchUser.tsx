@@ -9,7 +9,7 @@ import FavoriteStar from "@components/FavoriteStar";
 import ListItemButton from "@mui/material/ListItemButton";
 
 interface props {
-  handleClickOnUser: (userId: string) => void;
+  handleClickOnUser: (user: favoritesUsersType) => void;
   handleClickOnFavorite: (
     user: favoritesUsersType,
     isFavorite: boolean
@@ -25,7 +25,6 @@ const SearchUser: FC<props> = ({
   handleClickOnFavorite,
   isInFavoriteList,
 }) => {
-  console.log("boom");
   return (
     <>
       <ListItem
@@ -47,7 +46,7 @@ const SearchUser: FC<props> = ({
               },
             },
           }}
-          onClick={() => handleClickOnUser(user.id)}
+          onClick={() => handleClickOnUser(user)}
         >
           <ListItemAvatar>
             <Avatar>
