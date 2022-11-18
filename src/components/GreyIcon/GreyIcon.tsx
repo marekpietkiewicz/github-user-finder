@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useTheme } from "@mui/material/styles";
-import Icon, { IconProps } from "@mui/material/Icon";
+import Icon from "@mui/material/Icon";
+import type { IconProps } from "@mui/material/Icon";
 
 const IconComponent: FC = (props: IconProps) => {
   const theme = useTheme();

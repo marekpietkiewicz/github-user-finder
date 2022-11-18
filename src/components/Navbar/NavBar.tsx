@@ -52,10 +52,12 @@ const NavBar: FC = () => {
               ) : (
                 <Favorites handleOnCLick={handleOnCLick} />
               )}
-              <FavoriteStar
-                handleOnCLick={handleOnCLick}
-                isGold={currentAppState === appState.favorites}
-              />
+              <Box sx={{ mr: "10px" }}>
+                <FavoriteStar
+                  handleOnCLick={handleOnCLick}
+                  isGold={currentAppState === appState.favorites}
+                />
+              </Box>
             </Box>
           </Toolbar>
         </Container>

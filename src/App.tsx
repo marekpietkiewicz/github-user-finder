@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, useEffect } from "react";
+import { FC } from "react";
 import DashboardPage from "@pages/Dashboard";
 import AppTheme from "@components/AppTheme";
 import "./App.css";
