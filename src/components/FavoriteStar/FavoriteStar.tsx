@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import IconButton from "@mui/material/IconButton";
 import StarIcon from "@mui/icons-material/StarBorderOutlined";
 import StarOutlined from "@mui/icons-material/StarOutlined";

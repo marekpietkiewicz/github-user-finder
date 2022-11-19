@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useTheme } from "@mui/material/styles";
 import Icon from "@mui/material/Icon";
 import type { IconProps } from "@mui/material/Icon";

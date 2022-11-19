@@ -43,15 +43,15 @@ export const favoriteReducer = createSlice({
     changeSelectedUser: (state, action: PayloadAction<favoritesUsersType>) => {
       state.selectedUser = action.payload;
     },
-    addUserToFavorites: (state, action: PayloadAction<favoritesUsersType>) => {
+    addOrRemoveUserInFavorites: (
+      state,
+      action: PayloadAction<favoritesUsersType>
+    ) => {
       if (!doWeHaveThatUserInStack(state.favoritesUsers, action.payload.id)) {
         state.favoritesUsers = [...state.favoritesUsers, action.payload];
-      }
-    },
-    removeUserFromFavorites: (state, action: PayloadAction<string>) => {
-      if (doWeHaveThatUserInStack(state.favoritesUsers, action.payload)) {
+      } else {
         state.favoritesUsers = state.favoritesUsers.filter(function (user) {
-          return user.id !== action.payload;
+          return user.id !== action.payload.id;
         });
       }
     },
@@ -61,8 +61,7 @@ export const favoriteReducer = createSlice({
 export const {
   changeAppState,
   changeSelectedUser,
-  addUserToFavorites,
-  removeUserFromFavorites,
+  addOrRemoveUserInFavorites,
 } = favoriteReducer.actions;
 
 export default favoriteReducer.reducer;

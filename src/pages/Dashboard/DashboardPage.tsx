@@ -10,6 +10,7 @@ import NavBar from "@components/Navbar";
 import type { StoreState } from "src/store";
 import UsersList from "@components/UsersList";
 import useFavoriteList from "@hooks/useFavoriteList";
+import UserCard from "@components/UserCard";
 
 const searchUsers: favoritesUsersType[] = [
   {
@@ -60,6 +61,10 @@ const DashboardPage: FC = () => {
     (state: StoreState) => state.favorite.appState
   );
 
+  const selectedUser = useSelector(
+    (state: StoreState) => state.favorite.selectedUser
+  );
+
   const Content = () => {
     switch (currentAppState) {
       case appState.search:
@@ -67,7 +72,7 @@ const DashboardPage: FC = () => {
       case appState.favorites:
         return <UsersList users={favoriteList} />;
       case appState.user:
-        return <div>User</div>;
+        return <UserCard user={selectedUser} />;
       default:
         return <UsersList users={searchUsers} />;
     }
