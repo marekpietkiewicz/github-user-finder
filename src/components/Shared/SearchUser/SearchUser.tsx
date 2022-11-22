@@ -5,7 +5,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import FavoriteStar from "@components/FavoriteStar";
+import FavoriteStar from "@components/Shared/FavoriteStar";
 import ListItemButton from "@mui/material/ListItemButton";
 
 interface props {
@@ -49,9 +49,7 @@ const SearchUser: FC<props> = ({
           onClick={() => handleClickOnUser(user)}
         >
           <ListItemAvatar>
-            <Avatar>
-              <img alt={user.name} src={user.logo} />
-            </Avatar>
+            <Avatar alt={user.name} src={user.logo} />
           </ListItemAvatar>
           <ListItemText primary={user.name} secondary={user.description} />
         </ListItemButton>

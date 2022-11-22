@@ -1,18 +1,16 @@
 import { FC } from "react";
 import Card from "@mui/material/Card";
-import SearchUser from "./SearchUser";
+import SearchUser from "@components/Shared/SearchUser";
 import List from "@mui/material/List";
 import { useDispatch } from "react-redux";
 import { changeSelectedUser } from "@reducers/favoriteReducer";
 import type { favoritesUsersType } from "@reducers/favoriteReducer";
 import useFavoriteList from "@hooks/useFavoriteList";
 
-interface props {
-  users: favoritesUsersType[];
-}
-
-const UsersList: FC<props> = ({ users }) => {
+const UsersList: FC = () => {
   const dispatch = useDispatch();
+
+  const { favoriteList } = useFavoriteList();
 
   const { userIsInFavoriteList, handleAddOrRemoveUserInFavorites } =
     useFavoriteList();
@@ -28,13 +26,13 @@ const UsersList: FC<props> = ({ users }) => {
           padding: "10px",
         }}
       >
-        {users.map((user, index) => (
+        {favoriteList.map((user, index) => (
           <SearchUser
             key={user.id}
             user={user}
             handleClickOnUser={handleClickOnUser}
             handleClickOnFavorite={handleAddOrRemoveUserInFavorites}
-            showDivider={users.length > index + 1}
+            showDivider={favoriteList.length > index + 1}
             isInFavoriteList={userIsInFavoriteList(user.id)}
           />
         ))}

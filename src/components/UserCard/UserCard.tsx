@@ -1,12 +1,11 @@
 import type { FC } from "react";
-import { useTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import type { favoritesUsersType } from "@reducers/favoriteReducer";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import FavoriteStar from "@components/FavoriteStar";
+import FavoriteStar from "@components/Shared/FavoriteStar";
 import useFavoriteList from "@hooks/useFavoriteList";
 
 interface userCardProps {
@@ -24,7 +23,7 @@ const Stats: FC<statsProps> = ({ quantity, label }) => {
       <Typography variant="h5" component="div">
         {quantity}
       </Typography>
-      <Typography variant="caption" color="text.secondary" component="div">
+      <Typography fontSize={10} color="text.secondary" component="div">
         {label}
       </Typography>
     </Box>
@@ -76,7 +75,7 @@ const UserCard: FC<userCardProps> = ({ user }) => {
           <Stats quantity={123} label={"REPOS"} />
         </Box>
       </Box>
-      <Box sx={{ mr: "-6px" }}>
+      <Box sx={{ mr: "-6px", marginLeft: "auto" }}>
         <FavoriteStar
           handleOnCLick={() => handleAddOrRemoveUserInFavorites(user)}
           isGold={userIsInFavoriteList(user.id)}

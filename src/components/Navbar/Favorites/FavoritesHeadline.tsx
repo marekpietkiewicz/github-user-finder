@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Icon from "@components/GreyIcon";
+import Icon from "@components/Shared/GreyIcon";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 interface props {

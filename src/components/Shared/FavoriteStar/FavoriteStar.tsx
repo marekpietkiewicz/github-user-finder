@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import StarIcon from "@mui/icons-material/StarBorderOutlined";
 import StarOutlined from "@mui/icons-material/StarOutlined";
 import { useTheme } from "@mui/material/styles";
-import GreyIcon from "@components/GreyIcon";
+import GreyIcon from "@components/Shared/GreyIcon";
 
 interface props {
   handleOnCLick: () => void;

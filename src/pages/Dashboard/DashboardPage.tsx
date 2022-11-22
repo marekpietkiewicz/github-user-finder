@@ -8,9 +8,10 @@ import { appState } from "@reducers/favoriteReducer";
 import type { favoritesUsersType } from "@reducers/favoriteReducer";
 import NavBar from "@components/Navbar";
 import type { StoreState } from "src/store";
-import UsersList from "@components/UsersList";
-import useFavoriteList from "@hooks/useFavoriteList";
+import UsersListFavorite from "@components/UsersListFavorite";
+import UsersListSearch from "@components/UsersListSearch";
 import UserCard from "@components/UserCard";
+import NoSearchResults from "@components/Shared/NoSearchResults";
 
 const searchUsers: favoritesUsersType[] = [
   {
@@ -55,7 +56,6 @@ const searchUsers: favoritesUsersType[] = [
 
 const DashboardPage: FC = () => {
   const theme = useTheme();
-  const { favoriteList } = useFavoriteList();
 
   const currentAppState = useSelector(
     (state: StoreState) => state.favorite.appState
@@ -68,13 +68,13 @@ const DashboardPage: FC = () => {
   const Content = () => {
     switch (currentAppState) {
       case appState.search:
-        return <UsersList users={searchUsers} />;
+        return <UsersListSearch />;
       case appState.favorites:
-        return <UsersList users={favoriteList} />;
+        return <UsersListFavorite />;
       case appState.user:
         return <UserCard user={selectedUser} />;
       default:
-        return <UsersList users={searchUsers} />;
+        return <NoSearchResults />;
     }
   };
 

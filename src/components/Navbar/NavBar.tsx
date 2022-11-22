@@ -5,7 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { useTheme } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
-import FavoriteStar from "@components/FavoriteStar";
+import FavoriteStar from "@components/Shared/FavoriteStar";
 import Search from "@components/Navbar/Search";
 import Favorites from "@components/Navbar/Favorites";
 import { StoreState } from "src/store";

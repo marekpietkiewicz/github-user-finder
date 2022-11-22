@@ -12,18 +12,23 @@ export interface favoritesUsersType {
   description: string;
   name: string;
   logo: string;
+  public_repos?: number;
+  followers?: number;
+  following?: number;
 }
 
 interface storeInterface {
   appState: appStateTypes;
   favoritesUsers: favoritesUsersType[] | [];
   selectedUser: favoritesUsersType | null;
+  searchedQuery: string;
 }
 
 export const initialState: storeInterface = {
   appState: appState.search,
   favoritesUsers: [],
   selectedUser: null,
+  searchedQuery: "",
 };
 
 export const doWeHaveThatUserInStack = (
@@ -55,6 +60,9 @@ export const favoriteReducer = createSlice({
         });
       }
     },
+    changeSearchedQuery: (state, action: PayloadAction<string>) => {
+      state.searchedQuery = action.payload;
+    },
   },
 });
 
@@ -62,6 +70,7 @@ export const {
   changeAppState,
   changeSelectedUser,
   addOrRemoveUserInFavorites,
+  changeSearchedQuery,
 } = favoriteReducer.actions;
 
 export default favoriteReducer.reducer;

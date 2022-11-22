@@ -5,8 +5,19 @@ import {
   changeSelectedUser,
   changeAppState,
 } from "@reducers/favoriteReducer";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import { githubApi } from "@services/githubApi";
 
 const listenerMiddleware = createListenerMiddleware();
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 listenerMiddleware.startListening({
   actionCreator: changeSelectedUser,
@@ -17,10 +28,20 @@ listenerMiddleware.startListening({
 });
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   devTools: true,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(listenerMiddleware.middleware),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
+      .prepend(listenerMiddleware.middleware)
+      .concat(githubApi.middleware),
 });
 
 export type StoreState = ReturnType<typeof store.getState>;
+
+export const persistor = persistStore(store);
+
+// optional, but required for refetchOnFocus/refetchOnReconnect behaviors
+// see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
+setupListeners(store.dispatch);
